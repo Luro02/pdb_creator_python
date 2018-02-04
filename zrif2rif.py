@@ -3,7 +3,6 @@ import os
 import sys
 import zlib
 import base64
-from rif_parser import getKey
 from subprocess import Popen, PIPE
 
 def zrif2rif(zrif, output):
@@ -18,16 +17,6 @@ def zrif2rif(zrif, output):
 	# create folder and stuff if it doesn't exist...
 	os.makedirs(os.path.dirname(output), exist_ok=True)
 	open(output, "wb").write(rif)
-
-def klicensee_generator(zrif):
-    """
-	converts zrif to klicensee
-	might be some improvements without creating a rif...
-	"""
-    zrif2rif(zrif, 'temp.rif')
-    key = getKey('temp.rif')
-    os.remove('temp.rif')
-    return key
 
 
 def cid_fetch(pkg):
