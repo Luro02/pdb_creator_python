@@ -66,22 +66,31 @@ def create_theme(package, zrif):
 
 	cid = z2r.cid_fetch(package)
 	tid = z2r.offsets_read(package, 55, 63)
-
 	z2r.zrif2rif(zrif, "bgdl/t/{}/{}/sce_sys/package/work.bin".format(folder_number, tid.decode("utf-8")))
-	z2r.syscmd('pkg_dec {} bgdl/t/{}/{}/'.format(package, folder_number, tid.decode("utf-8")))
+
+	if os.path.isfile(sys._MEIPASS + os.sep + 'pkg_dec.exe'):
+		z2r.syscmd('{}{}pkg_dec {} bgdl/t/{}/{}/'.format(sys._MEIPASS, os.sep, package, folder_number, tid.decode("utf-8")))
+	else:
+		z2r.syscmd('pkg_dec {} bgdl/t/{}/{}/'.format(package, folder_number, tid.decode("utf-8")))
 
 	if len(tid) != len("PCSG90218"):
 		tid = tid + b'\x00'
 
-
-	# Copy Files:
-	copy2("assets/icon.png", "bgdl/t/{}/icon.png".format(folder_number))
-	copy2("assets/d0.pdb", "bgdl/t/{}/d0.pdb".format(folder_number))
-	copy2("assets/d1.pdb", "bgdl/t/{}/d1.pdb".format(folder_number))
-	copy2("assets/f0.pdb", "bgdl/t/{}/f0.pdb".format(folder_number))
+	if os.path.isfile(sys._MEIPASS + os.sep + 'assets' + os.sep + 'd0.pdb'):
+		# Copy Files:
+		copy2(sys._MEIPASS + os.sep + "assets/icon.png", "bgdl/t/{}/icon.png".format(folder_number))
+		copy2(sys._MEIPASS + os.sep + "assets/d0.pdb", "bgdl/t/{}/d0.pdb".format(folder_number))
+		copy2(sys._MEIPASS + os.sep + "assets/d1.pdb", "bgdl/t/{}/d1.pdb".format(folder_number))
+		copy2(sys._MEIPASS + os.sep + "assets/f0.pdb", "bgdl/t/{}/f0.pdb".format(folder_number))
+	else:
+		# Copy Files:
+		copy2("assets/icon.png", "bgdl/t/{}/icon.png".format(folder_number))
+		copy2("assets/d0.pdb", "bgdl/t/{}/d0.pdb".format(folder_number))
+		copy2("assets/d1.pdb", "bgdl/t/{}/d1.pdb".format(folder_number))
+		copy2("assets/f0.pdb", "bgdl/t/{}/f0.pdb".format(folder_number))
 
 	# Write to Files:
-
+	
 	z2r.offsets_write("bgdl/t/{}/d0.pdb".format(folder_number), 634, cid.encode("utf-8")) # CID
 	z2r.offsets_write("bgdl/t/{}/d0.pdb".format(folder_number), 778, tid) # TITLE_ID
 	z2r.offsets_write("bgdl/t/{}/d0.pdb".format(folder_number), 852, tid) # TITLE_ID_2
@@ -92,4 +101,5 @@ def create_theme(package, zrif):
 	z2r.offsets_write("bgdl/t/{}/d1.pdb".format(folder_number), 852, tid) # TITLE_ID_2
 
 if __name__ == "__main__":
-	create_theme(arguments())
+	package, zrif = arguments()
+	create_theme(package, zrif)

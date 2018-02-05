@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# User specific
+bgdl/
+pkg_dec.exe
+scripts/test_exe.bat
+scripts/pdb_creator.exe
+scripts/test.pkg
