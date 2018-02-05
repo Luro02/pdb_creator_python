@@ -19,8 +19,6 @@
 
 ## Credits:
 
-- Icons made by (Freepik)[http://www.freepik.com] from (flaticon.com)[https://www.flaticon.com/] is licensed by (CC 3.0)[http://creativecommons.org/licenses/by/3.0/]
+- zrif2rif function made by [mmozeiko](https://github.com/mmozeiko/)
 
-- zrif2rif function made by (mmozeiko)[https://github.com/mmozeiko/]
-
-- (pkg_dec)[https://github.com/weaknespase/PkgDecrypt] by Weaknespase and (St4rk)[https://github.com/St4rk/]
+- [pkg_dec](https://github.com/weaknespase/PkgDecrypt) by Weaknespase and [St4rk](https://github.com/St4rk/)
