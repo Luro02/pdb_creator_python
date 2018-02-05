@@ -1,5 +1,5 @@
 # pdb_creator_python
-## Hot to compile:
+## How to compile:
 
 1. move the "pkg_dec.exe" in the same folder with the pdb_creator.py
 2. install the dependencies:
